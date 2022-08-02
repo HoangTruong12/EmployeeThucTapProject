@@ -1,0 +1,125 @@
+﻿@model IEnumerable<EmployeeWebApp.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+</div>
+<h1>Danh sách nhân viên</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Tạo mới</a>
+</p>
+
+<form method="get" asp-controller="Employee" asp-action="Search">
+    <p>
+        Nội dung: <input type="text" name="username" />
+        <input class="btn btn-success" type="submit" value="Search" />
+    </p>
+</form>
+
+    <div class="dropdown" style="float:right;">
+        <button class="dropbtn">
+            Thông báo
+        </button>
+        <div class="dropdown-content">
+            <a href="">Thông báo cho 1 nhân viên</a>
+            <a asp-controller="Notification" asp-action="Index">Thông báo cho tất cả nhân viên</a>
+        </div>
+    </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Mật khẩu
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Thời gian tạo
+            </th>
+            <th>
+                Thời gian cập nhật
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedAt)
+                </td>
+                <td>
+                    @Html.ActionLink("", "Edit", new {  id=item.Id  }, new {@class= "btn btn-info fa fa-pencil"}) |
+                    @Html.ActionLink("", "Details", new {  id=item.Id}, new {@class= "btn btn-info fa fa-eye"}) |
+                    @Html.ActionLink("", "Delete", new {  id=item.Id}, new {@class= "btn btn-info fa fa-xmark"})
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@*<nav aria-label="Page navigation example">
+    <ul class="pagination">
+    <li class="page-item">
+    <a class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+    <span class="sr-only">Previous</span>
+    </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+    <a class="page-link" href="#" aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+    <span class="sr-only">Next</span>
+    </a>
+    </li>
+    </ul>
+    </nav>*@
